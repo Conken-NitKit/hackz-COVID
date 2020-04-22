@@ -14,6 +14,9 @@ const Container = styled.div`
 
 const App = () => {
   const [mode,setMode] = useState("DARKMODE") // LIGHTMODE or DARKMODE
+  const switchMode = () => {
+    setMode(mode == "DARKMODE" ? "LIGHTMODE" : "DARKMODE")
+  }
   return (
     <Container mode={mode}/>
   );
