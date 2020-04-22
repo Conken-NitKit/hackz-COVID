@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import styled from 'styled-components';
+import COLOR from './assets/color';
 import './App.css';
 
-function App() {
+const Container = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: ${(props)=>COLOR.BACKGROUND[props.mode]};
+`;
+
+const App = () => {
+  const [mode,setMode] = useState("DARKMODE") // LIGHTMODE or DARKMODE
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container mode={mode}/>
   );
 }
 
