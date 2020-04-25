@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import COLOR from './assets/color';
-import './App.css';
 
 const Container = styled.div`
   position: absolute;
@@ -13,9 +12,9 @@ const Container = styled.div`
 `;
 
 const App = () => {
-  const [mode,setMode] = useState("DARKMODE") // LIGHTMODE or DARKMODE
+  const [mode,setMode] = useState("LIGHTMODE") // LIGHTMODE or DARKMODE
   const switchMode = () => {
-    setMode(mode == "DARKMODE" ? "LIGHTMODE" : "DARKMODE")
+    setMode(mode === "DARKMODE" ? "LIGHTMODE" : "DARKMODE")
   }
   return (
     <Container mode={mode}/>
