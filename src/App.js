@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import COLOR from './assets/color';
+import COLOR from './styles/color';
 
 const Container = styled.div`
   position: absolute;

@@ -20,8 +20,8 @@ const COLOR = {
         DARKMODE: "#464775"
     },
     BACKGROUND: {
-        LIGHTMODE: "#202020",
-        DARKMODE: "#303437"
+        LIGHTMODE: "#FFFEEA",
+        DARKMODE: "#202020"
     },
 }
 
