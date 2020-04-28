@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
+import Color from '../../styles/color'
 
-const MeetingCard = ({data}) => {
+const MeetingCard = ({mode, data}) => {
     const handleClick = () => {
         // link先へ飛ぶ?
     }
 
     return (
-        <Container onClick={handleClick}>
-            <Title>{data.title}</Title>
-            <Owner>作成者: {data.owner}</Owner>
-            <Description>{data.description}</Description>
+        <Container mode={mode} onClick={handleClick}>
+            <Title mode={mode}>{data.title}</Title>
+            <Owner mode={mode}>作成者: {data.owner}</Owner>
+            <Description mode={mode}>{data.description}</Description>
         </Container>
     )
 }
@@ -21,24 +22,24 @@ const Container = styled.div`
     height: 183px;
     border: 1px solid #ffffff;
     border-radius: 1em;
-    background-color: #4d4d4d;
+    background-color: ${(props) => Color.BACKGROUND[props.mode]};
     padding: 1em 2em;
     margin: 1em 2em;
 `
 
 const Title = styled.p`
     font-weight: bold;
-    color: #3366FF;
+    color: ${(props) => Color.ACCENT[props.mode]};
     font-size: 1.5em;
 `
 
 const Owner = styled.p`
     font-weight: bold;
-    color: #ffffff;
+    color: ${(props) => Color.TEXT[props.mode]};
 `
 
 const Description = styled.p`
-    color: #ffffff;
+    color: ${(props) => Color.TEXT[props.mode]};
 `
 
 export default MeetingCard

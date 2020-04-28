@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import MeetingCard from '../../organisms/MeetingCard'
+import Color from '../../styles/color'
 
 // 仮データです
 const ViewdMEETINGS = [
@@ -58,26 +59,26 @@ const EditedMEETINGS = [
     },
 ]
 
-const MeetingPage = () => {
+const MeetingPage = ({mode}) => {
     return (
         <React.Fragment>
-            <Typography>閲覧したミーティング</Typography>
+            <Typography mode={mode}>閲覧したミーティング</Typography>
             <hr/> {/*水平線*/}
             <MeetingContainer>
-                {ViewdMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting}/>)}
+                {ViewdMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}/>)}
             </MeetingContainer>
 
-            <Typography>編集したミーティング</Typography>
+            <Typography mode={mode}>編集したミーティング</Typography>
             <hr/> {/*水平線*/}
             <MeetingContainer>
-                {EditedMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting}/>)}
+                {EditedMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}/>)}
             </MeetingContainer>
         </React.Fragment>
     )
 }
 
 const Typography = styled.p`
-    color: #ffffff;
+    color: ${(props) => Color.TEXT[props.mode]};
     font-size: 2em;
     font-weight: bold;
     text-align: center;
