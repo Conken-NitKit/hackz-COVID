@@ -16,13 +16,17 @@ const COLOR = {
         DARKMODE: "#DDDDDD"
     },
     BUTTON: {
-        LIGHTMODE: "#2064A0",
+        LIGHTMODE: "#F5BF1E",
         DARKMODE: "#464775"
     },
     BACKGROUND: {
         LIGHTMODE: "#FFFEEA",
         DARKMODE: "#202020"
     },
+    BORDER: {
+        LIGHTMODE: "#E5E5E5",
+        DARKMODE: "#888888"
+    }
 }
 
 export default COLOR

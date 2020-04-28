@@ -5,4 +5,5 @@ export default {
   title: 'Editor',
   component: Editor,
 };
-export const MarkdownEditor = () => <Editor /> 
+export const DarkEditor = () => <Editor mode="DARKMODE"/>
+export const LightEditor = () => <Editor mode="LIGHTMODE"/>
