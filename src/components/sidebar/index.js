@@ -65,7 +65,15 @@ const Text = styled.div`
 //############################################################
 //メインメソッド
 //############################################################
+
 const SideBar = (props) => {
+    /*
+        サイドバーの各アイテムに割り当てたNo.とリンク先
+        0:ミーティング新規作成 
+        1:ミーティングリスト 
+        2:設定
+    */
+
     const {mode} = props; // モード(LIGHTMODE or DARKMODE)
     const[selectedState,setSelectedState]=useState([true,false,false]); //各アイテムがそれぞれ選択されているか(配列)
 
@@ -73,7 +81,7 @@ const SideBar = (props) => {
     const itemOnClick = (selectedItemNo) => { 
         var selectedStateTmp=[];
 
-        //選択されたアイテムNo.による分岐(0:新規作成 1:リスト 2:設定)
+        //選択されたアイテムNo.による分岐
         switch(selectedItemNo){
             case 0:
                 alert("新規作成 got selected");
