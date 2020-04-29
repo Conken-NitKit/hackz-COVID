@@ -78,6 +78,7 @@ const KeywordList = styled.div`
     padding: 0 1%;
     padding-bottom: 1%;
     border-radius: 1em;
+    background: ${(props)=>COLOR.VIEWER.BACKGROUND[props.mode]};
     border: 2px solid ${(props)=>COLOR.BORDER[props.mode]};
 `;
 
@@ -98,7 +99,7 @@ const KeywordButton = styled.button`
     width: 100%;
     padding: 3% 5%;
     margin: 0 auto;
-    border: none;
+    border: 0.3px solid ${(props)=>COLOR.ACCENT[props.mode]};
     outline: none;
     font-weight: bold;
     border-radius: 7px;

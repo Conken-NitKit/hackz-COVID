@@ -95,7 +95,7 @@ const COLOR = {
             },
             ODD: {
                 LIGHTMODE: "#F8F8F8",
-                DARKMODE: "#333333",
+                DARKMODE: "#1F2127",
             }
         }
     }
