@@ -17,6 +17,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h2`
+    cursor: pointer;
     font-weight: bold;
     color: ${(props) => COLOR.ACCENT[props.mode]};
     font-size: 1.5em;

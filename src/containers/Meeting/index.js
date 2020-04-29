@@ -26,15 +26,18 @@ const Meeting = (props) => {
             </Menu>
             <div>
                 <MinuteList>
-                    {Object.keys(props.data.records).map(
+                    {screen === "MINUTE" && Object.keys(props.data.records).map(
                         key => <MinuteCard mode={props.mode} data={props.data.records[key]}/>
                     )}
                 </MinuteList>
-                <KeywordList mode={props.mode}>
-                    <Typography mode={props.mode}>重要だと思われるキーワード</Typography>
-                        {props.data.keywords.map((keyword,i) => <Keyword mode={props.mode}>{i+1}. {keyword}</Keyword>)}
-                    <KeywordButton mode={props.mode}>さらに詳しく</KeywordButton>
-                </KeywordList>
+                <RightItems>
+                    <CreateButton mode={props.mode}>新規作成</CreateButton>
+                    <KeywordList mode={props.mode}>
+                        <Typography mode={props.mode}>重要だと思われるキーワード</Typography>
+                            {props.data.keywords.map((keyword,i) => <Keyword mode={props.mode}>{i+1}. {keyword}</Keyword>)}
+                        <KeywordButton mode={props.mode}>さらに詳しく</KeywordButton>
+                    </KeywordList>
+                </RightItems>
             </div>
             )
         </React.Fragment>
@@ -85,13 +88,35 @@ const MinuteList = styled.div`
     width: 75%;
 `;
 
-const KeywordList = styled.div`
+const RightItems = styled.div`
     display: inline-block;
     vertical-align: top;
     width: 20%;
-    margin: 3% 1%;
-    padding: 0 1%;
-    padding-bottom: 1%;
+`;
+
+const CreateButton = styled.button`
+    font-size: 1.2em;
+    width: 100%;
+    padding: 3% 5%;
+    margin: 2% auto;
+    border: 0.3px solid ${(props)=>COLOR.ACCENT[props.mode]};
+    outline: none;
+    font-weight: bold;
+    border-radius: 7px;
+    color: ${(props) => COLOR.TEXT[props.mode]};
+    background: ${(props) => COLOR.BUTTON[props.mode]};
+    cursor: pointer;
+    &:active {
+        transform: translate(0.5px,1px);
+        transition: 0.1s;
+    }
+`;
+
+const KeywordList = styled.div`
+    width: 80%;
+    margin: 3%;
+    padding: 0 6%;
+    padding-bottom: 3%;
     border-radius: 1em;
     background: ${(props)=>COLOR.VIEWER.BACKGROUND[props.mode]};
     border: 2px solid ${(props)=>COLOR.BORDER[props.mode]};
@@ -114,8 +139,8 @@ const Keyword = styled.p`
 const KeywordButton = styled.button`
     font-size: 1em;
     width: 100%;
-    padding: 3% 5%;
-    margin: 0 auto;
+    padding: 3% 0;
+    margin: 3% auto;
     border: 0.3px solid ${(props)=>COLOR.ACCENT[props.mode]};
     outline: none;
     font-weight: bold;
