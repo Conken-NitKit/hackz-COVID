@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FaPen, FaEye } from 'react-icons/fa'
 import { BsSquareHalf } from 'react-icons/bs'
 
-import Markdown from '../../components/editor';
+import Markdown from '../../components/Editor';
 import COLOR from '../../styles/color';
 
 const  MinutePage = (props) => {

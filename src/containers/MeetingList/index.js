@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import MeetingCard from '../../organisms/MeetingCard'
+import MeetingCard from '../../components/MeetingCard'
 import Color from '../../styles/color'
 
 // 仮データです
