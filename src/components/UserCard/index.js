@@ -5,7 +5,7 @@ import COLOR from '../../styles/color'
 const UserCard = (props) => {
     return (
         <Container mode={props.mode}>
-            <DeleteButton mode={props.mode}>削除</DeleteButton>
+            {props.isAdmin && <DeleteButton mode={props.mode}>削除</DeleteButton>}
             <Name mode={props.mode}>{props.name}</Name>
             <Role mode={props.mode}>{props.role}</Role>
         </Container>
