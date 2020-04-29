@@ -23,8 +23,8 @@ const EditorSet = (props) => {
         console.log(contents);
     }
     return <Wrapper>
-        <Editor value={content} onChange={handleChange} />
-        <Viewer mode={props.mode} dangerouslySetInnerHTML={{ __html: contents}} />
+        {props.view !== "VIEW" && <Editor mode={props.mode} view={props.view} value={content} onChange={handleChange} />}
+        {props.view !== "EDIT" && <Viewer mode={props.mode} view={props.view} dangerouslySetInnerHTML={{ __html: contents}} />}
     </Wrapper>;
 }
 
@@ -35,25 +35,31 @@ const Wrapper = styled.div`
 
 const Editor = styled.textarea`
     display: inline-block;
-    width: 43%;
-    height: 98%;
-    margin: 1%;
+    width: ${(props)=>props.view==="EDIT"?90:45}%;
+    height: 100%;
     resize: none;
     border: none;
     outline: none;
+    padding: 1.5%;
+    color: ${(props)=>COLOR.SUBTEXT[props.mode]};
     font: 1.3em bold;
     background: ${(props)=>COLOR.BACKGROUND[props.mode]};
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
 `;
 
 const Viewer = styled.div`
     display: inline-block;
-    width: 45%;
+    width:  ${(props)=>props.view==="VIEW"?90:45}%;
     height: 100%;
-    padding: 0.5%;
     overflow: scroll;
     text-align: left;
+    padding: 1.5%;
     background: ${(props)=>COLOR.VIEWER.BACKGROUND[props.mode]};
     color: ${(props)=>COLOR.VIEWER.TEXT[props.mode]};
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    & p {
+        white-space: pre;
+    }
     & h1,h2,h3,h4,h5,h6 {
         color: ${(props)=>COLOR.ACCENT[props.mode]};
         padding-bottom: 0.1em;
