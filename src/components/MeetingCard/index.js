@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Color from '../../styles/color'
+import COLOR from '../../styles/color'
 
 const MeetingCard = ({mode, data}) => {
     const handleClick = () => {
@@ -22,24 +22,24 @@ const Container = styled.div`
     height: 183px;
     border: 1px solid #ffffff;
     border-radius: 1em;
-    background-color: ${(props) => Color.BACKGROUND[props.mode]};
+    background-color: ${(props) => COLOR.BACKGROUND[props.mode]};
     padding: 1em 2em;
     margin: 1em 2em;
 `
 
 const Title = styled.p`
     font-weight: bold;
-    color: ${(props) => Color.ACCENT[props.mode]};
+    color: ${(props) => COLOR.ACCENT[props.mode]};
     font-size: 1.5em;
 `
 
 const Owner = styled.p`
     font-weight: bold;
-    color: ${(props) => Color.TEXT[props.mode]};
+    color: ${(props) => COLOR.TEXT[props.mode]};
 `
 
 const Description = styled.p`
-    color: ${(props) => Color.TEXT[props.mode]};
+    color: ${(props) => COLOR.TEXT[props.mode]};
 `
 
 export default MeetingCard
