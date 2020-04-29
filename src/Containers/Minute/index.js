@@ -96,7 +96,7 @@ const ViewMode = styled.button`
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border: 0.5px solid ${(props)=>COLOR.BORDER[props.mode]};
-    background: ${(props)=>props.view==="VIEW"?COLOR.BUTTON[props.mode]:"white"};
+    background: ${(props)=>props.view==="VIEW"?COLOR.ACCENT[props.mode]:"white"};
 `;
 
 const HalfMode = styled.button`
@@ -108,7 +108,7 @@ const HalfMode = styled.button`
     background: white;
     border-top: 0.5px solid ${(props)=>COLOR.BORDER[props.mode]};
     border-bottom: 0.5px solid ${(props)=>COLOR.BORDER[props.mode]};
-    background: ${(props)=>props.view==="HALF"?COLOR.BUTTON[props.mode]:"white"};
+    background: ${(props)=>props.view==="HALF"?COLOR.ACCENT[props.mode]:"white"};
 `;
 
 const EditMode = styled.button`
@@ -120,7 +120,7 @@ const EditMode = styled.button`
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     border: 0.5px solid ${(props)=>COLOR.BORDER[props.mode]};
-    background: ${(props)=>props.view==="EDIT"?COLOR.BUTTON[props.mode]:"white"};
+    background: ${(props)=>props.view==="EDIT"?COLOR.ACCENT[props.mode]:"white"};
 `;
 
 const MarkdownWrapper = styled.div`
