@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 
 const Editor = styled.textarea`
     display: inline-block;
-    width: ${(props)=>props.view==="EDIT"?93:46}%;
+    width: ${(props)=>props.view==="EDIT"?95.1:46}%;
     height: 96%;
     resize: none;
     border: none;
@@ -50,7 +50,7 @@ const Editor = styled.textarea`
 
 const Viewer = styled.div`
     display: inline-block;
-    width:  ${(props)=>props.view==="VIEW"?93:46}%;
+    width:  ${(props)=>props.view==="VIEW"?95.1:46}%;
     height: 96%;
     overflow: scroll;
     text-align: left;
