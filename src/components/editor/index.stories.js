@@ -1,13 +1,20 @@
 import React from 'react';
 import Editor from './index';
+import styled from 'styled-components';
 
 export default {
   title: 'Editor',
   component: Editor,
 };
-export const DarkEditor1 = () => <Editor mode="DARKMODE" view="VIEW"/>
-export const DarkEditor2 = () => <Editor mode="DARKMODE" view="HALF"/>
-export const DarkEditor3 = () => <Editor mode="DARKMODE" view="EDIT"/>
-export const LightEditor1 = () => <Editor mode="LIGHTMODE" view="VIEW"/>
-export const LightEditor2 = () => <Editor mode="LIGHTMODE" view="HALF"/>
-export const LightEditor3 = () => <Editor mode="LIGHTMODE" view="EDIT"/>
+
+const StoryWrapper = styled.div`
+  height: 90vh;
+  width: 90vw;
+`;
+
+export const DarkEditor1 = () => <StoryWrapper><Editor mode="DARKMODE" view="VIEW"/></StoryWrapper>
+export const DarkEditor2 = () => <StoryWrapper><Editor mode="DARKMODE" view="HALF"/></StoryWrapper>
+export const DarkEditor3 = () => <StoryWrapper><Editor mode="DARKMODE" view="EDIT"/></StoryWrapper>
+export const LightEditor1 = () => <StoryWrapper><Editor mode="LIGHTMODE" view="VIEW"/></StoryWrapper>
+export const LightEditor2 = () => <StoryWrapper><Editor mode="LIGHTMODE" view="HALF"/></StoryWrapper>
+export const LightEditor3 = () => <StoryWrapper><Editor mode="LIGHTMODE" view="EDIT"/></StoryWrapper>
