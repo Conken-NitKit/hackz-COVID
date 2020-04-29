@@ -17,14 +17,14 @@ const COLOR = {
     },
     BUTTON: {
         LIGHTMODE: "#F5BF1E",
-        DARKMODE: "#464775"
+        DARKMODE: "#2064A0"
     },
     BACKGROUND: {
         LIGHTMODE: "#FFFEEA",
         DARKMODE: "#202020"
     },
     BORDER: {
-        LIGHTMODE: "#E5E5E5",
+        LIGHTMODE: "#BABABA",
         DARKMODE: "#888888"
     },
     VIEWER: {
