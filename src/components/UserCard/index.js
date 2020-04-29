@@ -14,7 +14,7 @@ const UserCard = (props) => {
 
 const Container = styled.div`
     position: relative;
-    margin-left: 3%;
+    margin: 0 5%;
     padding: 0.7%;
     border: 1px solid ${(props)=>COLOR.BORDER[props.mode]};
     background: ${(props)=>COLOR.EDITOR.BACKGROUND[props.mode]};

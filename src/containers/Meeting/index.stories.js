@@ -25,7 +25,7 @@ const data = {
     },
     members: [{
         id: 'USER_ID_FUKKE',
-        nam: 'ふっけ'
+        name: 'ふっけ'
     }],
     records: {
         USER_ID_NIBA: {

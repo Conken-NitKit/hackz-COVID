@@ -4,6 +4,7 @@ import { MdBook, MdSettings } from  'react-icons/md'
 import { FaUser } from 'react-icons/fa'
 
 import MinuteCard from '../../components/MinuteCard'
+import UserCard from '../../components/UserCard'
 import COLOR from '../../styles/color'
 
 const Meeting = (props) => {
@@ -28,6 +29,10 @@ const Meeting = (props) => {
                 <MinuteList>
                     {screen === "MINUTE" && Object.keys(props.data.records).map(
                         key => <MinuteCard mode={props.mode} data={props.data.records[key]}/>
+                    )}
+                    {screen === "USERS" && <UserCard mode={props.mode} name={props.data.owner.name} role={"管理者"} isAdmin={true}/>}
+                    {screen === "USERS" && props.data.members.map(
+                        member => <UserCard mode={props.mode} name={member.name} role={"参加者"} isAdmin={true}/>
                     )}
                 </MinuteList>
                 <RightItems>
