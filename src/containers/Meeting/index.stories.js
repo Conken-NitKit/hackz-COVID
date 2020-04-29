@@ -16,6 +16,7 @@ const StoryWrapper = styled.div`
 
 const data = {
     title: 'Hackzハッカソンミーティング',
+    discription: '詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳\n細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細詳細',
     black_list: ['キーワード2'],
     keywords: ['キーワード1', 'キーワード2'],
     owner: {
