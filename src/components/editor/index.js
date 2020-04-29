@@ -29,31 +29,34 @@ const EditorSet = (props) => {
 }
 
 const Wrapper = styled.div`
-    width: 90vw;
-    height: 90vh;
+    width: 100%;
+    height: 100%;
 `;
 
 const Editor = styled.textarea`
     display: inline-block;
-    width: ${(props)=>props.view==="EDIT"?90:45}%;
-    height: 100%;
+    width: ${(props)=>props.view==="EDIT"?93:46}%;
+    height: 96%;
     resize: none;
     border: none;
     outline: none;
     padding: 1.5%;
     color: ${(props)=>COLOR.SUBTEXT[props.mode]};
     font: 1.3em bold;
-    background: ${(props)=>COLOR.BACKGROUND[props.mode]};
+    border: 2px solid ${(props)=>COLOR.BORDER[props.mode]};
+    background: ${(props)=>COLOR.EDITOR.BACKGROUND[props.mode]};
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
 `;
 
 const Viewer = styled.div`
     display: inline-block;
-    width:  ${(props)=>props.view==="VIEW"?90:45}%;
-    height: 100%;
+    width:  ${(props)=>props.view==="VIEW"?93:46}%;
+    height: 96%;
     overflow: scroll;
     text-align: left;
     padding: 1.5%;
+    border: 2px solid ${(props)=>COLOR.BORDER[props.mode]};
+    border-left: ${(props)=>props.view==="VIEW"?"2px solid "+COLOR.BORDER[props.mode]:"none"};
     background: ${(props)=>COLOR.VIEWER.BACKGROUND[props.mode]};
     color: ${(props)=>COLOR.VIEWER.TEXT[props.mode]};
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;

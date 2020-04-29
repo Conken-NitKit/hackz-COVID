@@ -27,6 +27,12 @@ const COLOR = {
         LIGHTMODE: "#BABABA",
         DARKMODE: "#888888"
     },
+    EDITOR: {
+        BACKGROUND: {
+            LIGHTMODE: "#FEFEFE",
+            DARKMODE: "#1F2127"
+        }
+    },
     VIEWER: {
         TEXT: {
             LIGHTMODE: "#656565",
