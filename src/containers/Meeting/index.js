@@ -44,7 +44,6 @@ const Meeting = (props) => {
                     </KeywordList>
                 </RightItems>
             </div>
-            )
         </React.Fragment>
     );
 }
