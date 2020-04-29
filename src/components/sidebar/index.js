@@ -96,7 +96,7 @@ const SideBar = (props) => {
                 break;
         }
 
-        for(let i=0;i<selectedState.length;i++)selectedStateTmp[i]=(i==selectedItemNo);//各アイテムが選択されているか否かを配列に格納
+        for(let i=0;i<selectedState.length;i++)selectedStateTmp[i]=(i===selectedItemNo);//各アイテムが選択されているか否かを配列に格納
         setSelectedState(selectedStateTmp);
     }
 
