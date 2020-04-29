@@ -41,7 +41,7 @@ const Editor = styled.textarea`
     resize: none;
     border: none;
     outline: none;
-    font: 1.5rem bold;
+    font: 1.3em bold;
     background: ${(props)=>COLOR.BACKGROUND[props.mode]};
 `;
 
@@ -52,18 +52,96 @@ const Viewer = styled.div`
     padding: 0.5%;
     overflow: scroll;
     text-align: left;
-    background: ${(props)=>COLOR.BACKGROUND[props.mode]};
-    color: ${(props)=>COLOR.TEXT[props.mode]};
-    & h1,h2,h3,h4,h5 {
+    background: ${(props)=>COLOR.VIEWER.BACKGROUND[props.mode]};
+    color: ${(props)=>COLOR.VIEWER.TEXT[props.mode]};
+    & h1,h2,h3,h4,h5,h6 {
         color: ${(props)=>COLOR.ACCENT[props.mode]};
+        padding-bottom: 0.1em;
+    }
+    & h1,h2 {
+        border-bottom: 1px solid ${(props)=>COLOR.VIEWER.BLOCLQUOTE.BORDER[props.mode]};
+    }
+    & a {
+        color: ${(props)=>COLOR.VIEWER.ACCENT[props.mode]};
+        font-size: 1.3em;
     }
     & strong {
         color: ${(props)=>COLOR.ACCENT[props.mode]};
+        font-size: 1.3em;
     }
     & hr {
         height: 1.5px;
-        background-color: ${(props)=>COLOR.BORDER[props.mode]};
+        background-color: ${(props)=>COLOR.VIEWER.BLOCLQUOTE.BORDER[props.mode]};
         border: none;
+    }
+    & blockquote {
+        border-left: 5px solid ${(props)=>COLOR.VIEWER.BLOCLQUOTE.BORDER[props.mode]};
+        color: ${(props)=>COLOR.VIEWER.BLOCLQUOTE.TEXT[props.mode]};
+        padding: 1em;
+        padding-right: 0;
+        margin: 1.5em 0;
+    }
+    & code {
+        background-color: ${(props)=>COLOR.VIEWER.CODE.BACKGROUND[props.mode]};
+        color: ${(props)=>COLOR.VIEWER.CODE.TEXT[props.mode]};
+        border-color: ${(props)=>COLOR.VIEWER.CODE.BORDER[props.mode]};
+        padding: 0.1em 0.4em;
+        font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+    }
+    & table {
+        display: block;
+        overflow: auto;
+        margin: 1.5em 0;
+        border-left: 1px solid ${(props)=>COLOR.VIEWER.TABLE.OUTLINE[props.mode]};
+        border-collapse: collapse;
+    }
+    & thead {
+        display: table-header-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+    & th {
+        font-weight: bold;
+        background-color: ${(props)=>COLOR.VIEWER.BACKGROUND[props.mode]};
+        border-top: 1px solid ${(props)=>COLOR.VIEWER.TABLE.OUTLINE[props.mode]};
+        border-bottom: 1px solid ${(props)=>COLOR.VIEWER.TABLE.INNER[props.mode]};
+        border-right: 1px solid ${(props)=>COLOR.VIEWER.TABLE.INNER[props.mode]};
+        padding: 8px 10px;
+    }
+    & tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+    & tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+    }
+    & td {
+        border-bottom: 1px solid ${(props)=>COLOR.VIEWER.TABLE.INNER[props.mode]};
+        border-right: 1px solid ${(props)=>COLOR.VIEWER.TABLE.INNER[props.mode]};
+        padding: 8px 10px;
+        max-width: 600px;
+    }
+    & tr:nth-child(odd) td {
+        background-color: ${(props)=>COLOR.VIEWER.TABLE.ODD[props.mode]};
+        border-bottom: 1px solid ${(props)=>COLOR.VIEWER.TABLE.INNER[props.mode]};
+        border-right: 1px solid ${(props)=>COLOR.VIEWER.TABLE.INNER[props.mode]};
+        padding: 8px 10px;
+        max-width: 600px;
+    }
+    & pre {
+        background-color: ${(props)=>COLOR.VIEWER.CODE.BACKGROUND[props.mode]};
+        color: ${(props)=>COLOR.VIEWER.CODE.TEXT[props.mode]};
+        border-color: ${(props)=>COLOR.VIEWER.CODE.BORDER[props.mode]};
+        padding: 0.1em 0.4em;
+    }
+    & pre code {
+        background-color: ${(props)=>COLOR.VIEWER.CODE.BACKGROUND[props.mode]};
+        color: ${(props)=>COLOR.VIEWER.CODE.TEXT[props.mode]};
+        border-color: ${(props)=>COLOR.VIEWER.CODE.BORDER[props.mode]};
+        font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
     }
 `;
 
