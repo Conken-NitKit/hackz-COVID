@@ -7,8 +7,8 @@ import Markdown from '../../components/Editor';
 import COLOR from '../../styles/color';
 
 const  MinutePage = (props) => {
-    const writter = "クボ太郎"
-    const [viewMode,setViewMode] = useState("HALF")
+    const {writter, loginUserName} = props;
+    const [viewMode,setViewMode] = useState(writter === loginUserName ? "HALF" : 'VIEW')
     const keywords = ["高専生","高専生","高専生","高専生","高専生","高専生","高専生"];
     return (
         <Wrapper mode={props.mode} >
@@ -17,17 +17,19 @@ const  MinutePage = (props) => {
                     <Title mode={props.mode}>Hackz-COVID</Title>
                     <Detail mode={props.mode}>
                         <Writter mode={props.mode}>製作者: {writter}</Writter>
-                        <ModeGroup mode={props.mode}>
-                            <EditMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("EDIT")}>
-                                <FaPen color={viewMode!=="EDIT"?"black":COLOR.TEXT[props.mode]}/>
-                            </EditMode>
-                            <HalfMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("HALF")}>
-                                <BsSquareHalf color={viewMode!=="HALF"?"black":COLOR.TEXT[props.mode]}/>
-                            </HalfMode>
-                            <ViewMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("VIEW")}>
-                                <FaEye color={viewMode!=="VIEW"?"black":COLOR.TEXT[props.mode]}/>
-                            </ViewMode>
-                        </ModeGroup>
+                        {writter === loginUserName && (
+                            <ModeGroup mode={props.mode}>
+                                <EditMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("EDIT")}>
+                                    <FaPen color={viewMode!=="EDIT"?"black":COLOR.TEXT[props.mode]}/>
+                                </EditMode>
+                                <HalfMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("HALF")}>
+                                    <BsSquareHalf color={viewMode!=="HALF"?"black":COLOR.TEXT[props.mode]}/>
+                                </HalfMode>
+                                <ViewMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("VIEW")}>
+                                    <FaEye color={viewMode!=="VIEW"?"black":COLOR.TEXT[props.mode]}/>
+                                </ViewMode>
+                            </ModeGroup>
+                        )}
                     </Detail>
                 </MinuteHeader>
                 <MarkdownWrapper mode={props.mode}>
