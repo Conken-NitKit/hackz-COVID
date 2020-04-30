@@ -39,6 +39,22 @@ const Title = styled.div`
     color: #FFFFFF;
 `;
 
+//アイコン
+const Icon = styled.img`
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 25px;
+
+    color: #FFFFFF;
+
+    border: 1px solid #000000;
+    border-radius: 50%;
+`;
+
 //############################################################
 //メインメソッド
 //############################################################
@@ -51,6 +67,7 @@ const Header = (props) => {
     return (
         <Main mode={mode} isHome={isHome}>
             <Title>タイトル</Title>
+            <Icon alt={"アイコン"}></Icon>
         </Main>
     );
 }
