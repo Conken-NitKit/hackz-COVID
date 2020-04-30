@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import COLOR from '../../styles/color'
+import AuthCard from '../../components/AuthCard'
 
 const Data1 = [
     {
@@ -36,13 +37,19 @@ const Data2 = [
 ]
 
 const Home = ({mode, switchMode}) => {
+    const [isSignIn, setSignIn] = useState(true)
+    const [isAuthShow, setAuthShow] = useState(false)
 
     const handleSignIn = () => {
+        setSignIn(true)
+        setAuthShow(true)
         // signIn
     }
 
     const handleSignUp = () => {
         // signUp
+        setSignIn(false)
+        setAuthShow(true)
     }
 
     return (
@@ -101,6 +108,7 @@ const Home = ({mode, switchMode}) => {
                     'ライトモードにする'
                 }
             </ModeSwitchButton>
+            <AuthCard mode={mode} isSignIn={isSignIn} isAuthShow={isAuthShow}/>
         </div>
     )
 }
