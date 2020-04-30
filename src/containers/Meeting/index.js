@@ -8,6 +8,7 @@ import UserCard from '../../components/UserCard'
 import COLOR from '../../styles/color'
 
 const Meeting = (props) => {
+    const {handleMinuteClick} = props
     const [screen,setScreen] = useState("MINUTE");
 
     //以下仮データ(要らなくなったら消してください)
@@ -33,7 +34,7 @@ const Meeting = (props) => {
     //ここまで仮データ
 
     return (
-        <React.Fragment>
+        <div style={{width: '100%'}}>
             <Title mode={props.mode}>{props.data.title}</Title>
             <Owner mode={props.mode}>作成者: {props.data.owner.name}</Owner>
             <Discription mode={props.mode}>{props.data.discription}</Discription>
@@ -59,7 +60,7 @@ const Meeting = (props) => {
                     )}
                 </MinuteList>
                 <RightItems>
-                    <CreateButton mode={props.mode}>{(props.data.owner.name === "me" ? "自分の議事録を開く" : "新規作成") /*必要に応じて"me"は変更してください */}</CreateButton>
+                    <CreateButton mode={props.mode} onClick={handleMinuteClick}>{(props.data.owner.name === "me" ? "自分の議事録を開く" : "新規作成") /*必要に応じて"me"は変更してください */}</CreateButton>
                     <KeywordList mode={props.mode}>
                         <Typography mode={props.mode}>重要だと思われるキーワード</Typography>
                             {props.data.keywords.map((keyword,i) => <Keyword mode={props.mode}>{i+1}. {keyword}</Keyword>)}
@@ -67,7 +68,7 @@ const Meeting = (props) => {
                     </KeywordList>
                 </RightItems>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 export default Meeting;
