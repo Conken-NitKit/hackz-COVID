@@ -123,7 +123,7 @@ const Home = ({mode, switchMode}) => {
 }
 
 const ServiceContainer = styled.div`
-    background-color: ${(props) => COLOR.MAIN[props.mode]};
+    background-color: ${(props) => (props) => props.mode === 'LIGHTMODE' ? '#F5BF1E' : '#243A5E'};
     padding: 2em;
     display: flex;
 `
