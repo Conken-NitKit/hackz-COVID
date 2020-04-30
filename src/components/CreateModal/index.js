@@ -171,7 +171,7 @@ const SubmitButton = styled.button`
 //############################################################
 //  メインメソッド
 //############################################################
-const Modal = (props) => {
+const CreateModal = (props) => {
 
     const {mode} = props; // モード(LIGHTMODE or DARKMODE)
 
@@ -207,4 +207,4 @@ const Modal = (props) => {
     );
 }
 
-export default Modal;
+export default CreateModal;
