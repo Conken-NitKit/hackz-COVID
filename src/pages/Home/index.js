@@ -132,22 +132,20 @@ const ServiceTitleCaption = styled.p`
 
 const ServiceButtonContainer = styled.div`
     display: flex;
-    justify-content: space-around;
     margin-top: 5em;
 `
 
 const SignInButton = styled.div`
-    background-color: ${(props) => COLOR.ACCENT[props.mode]};
+    background-color: ${(props) => props.mode === 'LIGHTMODE' ? '#F66204' : COLOR.ACCENT[props.mode]};
     color: ${(props) => COLOR.TEXT[props.mode]};
-    padding: 1em 2em;
-    border-radius: 1em;
+    padding: 0.5em 2em;
 `
 
 const SignUpButton = styled.div`
     border: 1px solid ${(props) => COLOR.TEXT[props.mode]};
     color: ${(props) => COLOR.TEXT[props.mode]};
-    padding: 1em 2em;
-    border-radius: 1em;
+    padding: 0.5em 2em;
+    margin-left: 1em;
 `
 
 const CatchImage = styled.div`
@@ -209,7 +207,7 @@ const DetailDescription = styled.p`
 
 const ModeSwitchButton = styled.div`
     background-color: ${(props) => COLOR.BUTTON[props.mode]};
-    color: ${(props) => COLOR.TEXT[props.mode]};
+    color: #ffffff;
     padding: 1em 1.5em;
     width: 150px;
     border-radius: 1em;
