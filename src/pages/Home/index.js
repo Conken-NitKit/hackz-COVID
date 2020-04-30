@@ -137,8 +137,9 @@ const ServiceButtonContainer = styled.div`
 
 const SignInButton = styled.div`
     background-color: ${(props) => props.mode === 'LIGHTMODE' ? '#F66204' : COLOR.ACCENT[props.mode]};
-    color: ${(props) => COLOR.TEXT[props.mode]};
+    color: #ffffff;
     padding: 0.5em 2em;
+    font-weight: bold;
 `
 
 const SignUpButton = styled.div`
@@ -146,6 +147,7 @@ const SignUpButton = styled.div`
     color: ${(props) => COLOR.TEXT[props.mode]};
     padding: 0.5em 2em;
     margin-left: 1em;
+    font-weight: bold;
 `
 
 const CatchImage = styled.div`
