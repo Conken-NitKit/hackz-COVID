@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import COLOR from '../../styles/color';
 
-import {IoMdAddCircle, IoMdSettings} from 'react-icons/io';
+import {FaSun, FaMoon} from 'react-icons/fa';
 import {GiDiscussion} from 'react-icons/gi';
+import {IoMdAddCircle, IoMdSettings} from 'react-icons/io';
 
 //############################################################
 //コンポーネント
@@ -11,9 +12,9 @@ import {GiDiscussion} from 'react-icons/gi';
 
 //サイドバー全体
 const Container = styled.div`
-    position: absolute;
+    position:relative;
     width: 10%;
-    height: 100%;
+    height: 100vh;
     left: 0px;
     top: 0px;
 
@@ -28,6 +29,16 @@ const Item = styled.div`
     height: 175px;
 
     background: ${(props)=>(props.selected ? COLOR.MAIN[props.mode] : "#3B3A3A")};
+`;
+
+//サイドバーの項目(ボトムに置くもの)
+const BottomItem = styled.div`
+    position: absolute;
+    width: 100%;
+    height: 125px;
+    bottom: 0;
+
+    background: "#3B3A3A";
 `;
 
 //アイテムが選択されたときに表示される横の白いやつ
@@ -63,9 +74,25 @@ const Text = styled.div`
 `;
 
 //############################################################
-//メインメソッド
+//メソッド
 //############################################################
 
+//モードに対応したアイコンを返す
+const ModeIcon = (props) => {
+    const {mode} = props; // モード(LIGHTMODE or DARKMODE)
+
+    if(mode === "LIGHTMODE"){
+        return (
+            <FaSun size={70} color={"white"}/>
+        )
+    }else{
+        return (
+            <FaMoon size={70} color={"white"}/>
+        )
+    }
+}
+
+//サイドバー本体(メイン)
 const SideBar = (props) => {
     /*
         サイドバーの各アイテムに割り当てたNo.とリンク先
@@ -74,7 +101,11 @@ const SideBar = (props) => {
         2:設定
     */
 
-    const {mode} = props; // モード(LIGHTMODE or DARKMODE)
+    const {
+        mode,// モード(LIGHTMODE or DARKMODE)
+        switchMode //switchMode関数
+    } = props; 
+    
     const[selectedState,setSelectedState]=useState([true,false,false]); //各アイテムがそれぞれ選択されているか(配列)
 
     //各アイテムがクリックされたときに呼び出されるイベント
@@ -127,6 +158,12 @@ const SideBar = (props) => {
                 </Icon>
                 <Text>設定</Text>
             </Item>
+
+            <BottomItem mode={mode} selected={false} onClick={()=>switchMode()}>
+                <Icon>
+                    <ModeIcon mode={mode}/>
+                </Icon>
+            </BottomItem>
         </Container>
     );
 }
