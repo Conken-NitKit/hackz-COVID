@@ -9,6 +9,29 @@ import COLOR from '../../styles/color'
 
 const Meeting = (props) => {
     const [screen,setScreen] = useState("MINUTE");
+
+    //以下仮データ(要らなくなったら消してください)
+    props.data.title="Re:actから(ry";
+    props.data.owner={
+        name:"me",
+        ref: "/Isers/JDHYxfvgvYEvgyeQUXV"
+    }
+    props.data.discription="";
+    props.data.records= [
+        {
+            editor:"me",
+            lastEditDate: "2020年4月28日 0:00:00 UTC+9",
+            markdown: "内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です"
+        },
+        {
+            editor:"you",
+            lastEditDate: "2020年4月28日 0:00:00 UTC+9",
+            markdown: "内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です"
+        }
+    ];
+    props.data.keywords=["内容","です"];
+    //ここまで仮データ
+
     return (
         <React.Fragment>
             <Title mode={props.mode}>{props.data.title}</Title>
@@ -36,7 +59,7 @@ const Meeting = (props) => {
                     )}
                 </MinuteList>
                 <RightItems>
-                    <CreateButton mode={props.mode}>新規作成</CreateButton>
+                    <CreateButton mode={props.mode}>{(props.data.owner.name === "me" ? "自分の議事録を開く" : "新規作成") /*必要に応じて"me"は変更してください */}</CreateButton>
                     <KeywordList mode={props.mode}>
                         <Typography mode={props.mode}>重要だと思われるキーワード</Typography>
                             {props.data.keywords.map((keyword,i) => <Keyword mode={props.mode}>{i+1}. {keyword}</Keyword>)}
