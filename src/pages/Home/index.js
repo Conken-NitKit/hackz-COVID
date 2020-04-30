@@ -40,6 +40,10 @@ const Home = ({mode, switchMode}) => {
     const [isSignIn, setSignIn] = useState(true)
     const [isAuthShow, setAuthShow] = useState(false)
 
+    const handleAuthShow = () => {
+        setAuthShow(prev => !prev)
+    }
+
     const handleSignIn = () => {
         setSignIn(true)
         setAuthShow(true)
@@ -108,7 +112,12 @@ const Home = ({mode, switchMode}) => {
                     'ライトモードにする'
                 }
             </ModeSwitchButton>
-            <AuthCard mode={mode} isSignIn={isSignIn} isAuthShow={isAuthShow}/>
+            {isAuthShow && (
+                <React.Fragment>
+                    <AuthCard mode={mode} isSignIn={isSignIn} handleAuthShow={handleAuthShow}/>
+                    <Cover/>
+                </React.Fragment>
+            )}
         </div>
     )
 }
@@ -224,6 +233,16 @@ const ModeSwitchButton = styled.div`
     position: absolute;
     bottom: 2em;
     right: 2em;
+`
+
+const Cover = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
 `
 
 export default Home
