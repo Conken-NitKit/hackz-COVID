@@ -14,8 +14,14 @@ const Meeting = (props) => {
     props.data.title="Re:actから(ry";
     props.data.owner={
         name:"me",
-        ref: "/Isers/JDHYxfvgvYEvgyeQUXV"
+        ref: "/Users/JDHYxfvgvYEvgyeQUXV"
     }
+    props.data.members=[
+        {
+            name:"you",
+            ref: "/Users/VUNhdaBKUXNBIKSJHn"
+        }
+    ];
     props.data.discription="";
     props.data.records= [
         {
@@ -53,9 +59,9 @@ const Meeting = (props) => {
                     {screen === "MINUTE" && Object.keys(props.data.records).map(
                         key => <MinuteCard mode={props.mode} data={props.data.records[key]}/>
                     )}
-                    {screen === "USERS" && <UserCard mode={props.mode} name={props.data.owner.name} role={"管理者"} isAdmin={true}/>}
+                    {screen === "USERS" && <UserCard mode={props.mode} name={props.data.owner.name} role={"管理者"} isAdmin={false}/>}
                     {screen === "USERS" && props.data.members.map(
-                        member => <UserCard mode={props.mode} name={member.name} role={"参加者"} isAdmin={true}/>
+                        member => <UserCard mode={props.mode} name={member.name} role={"参加者"} isAdmin={props.data.owner.name === "me"}/>
                     )}
                 </MinuteList>
                 <RightItems>
