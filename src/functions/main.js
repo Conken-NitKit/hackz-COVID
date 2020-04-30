@@ -43,7 +43,7 @@ export const initMeeting = async(title, discription, ownerId) => {
 export const addUser = async(meetingId, userId) => {
   const postData = {
     'meeting_id': meetingId,
-    'userId': userId
+    'user_id': userId
   }
   return await axios.post(baseUrl + 'meetings/add_record', postData)
 }
