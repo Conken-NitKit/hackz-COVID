@@ -9,6 +9,21 @@ import COLOR from '../../styles/color';
 
 const EditorSet = (props) => {
     const [content, setContent] = useState("");
+    const keywords = ["高校生","高専"];
+    const replacer = ( str, word ) => {
+        const formatStr = str.replace(/<h1 id="(.*?)">/g,'<h1>')
+                             .replace(/<h2 id="(.*?)">/g,'<h2>')
+                             .replace(/<h3 id="(.*?)">/g,'<h3>')
+                             .replace(/<h4 id="(.*?)">/g,'<h4>')
+                             .replace(/<h5 id="(.*?)">/g,'<h5>')
+                             .replace(/<h6 id="(.*?)">/g,'<h6>')
+        const searchString = '(' + word + ')';
+        const regularExp = new RegExp( searchString, "g" );
+        const replaceString = '<span style="background-color:#cb2431;color:white;">$1</span>';
+        const resString = formatStr.replace( regularExp , replaceString );
+        return resString;
+    }
+
     const { contents } =
         unified()
         .use(markdown)
@@ -21,10 +36,16 @@ const EditorSet = (props) => {
         setContent(e.target.value);
         console.log(content);
         console.log(contents);
+        console.log(replacer(contents,"高校生"));
     }
+
     return <Wrapper>
         {props.view !== "VIEW" && <Editor mode={props.mode} view={props.view} value={content} onChange={handleChange} />}
-        {props.view !== "EDIT" && <Viewer mode={props.mode} view={props.view} dangerouslySetInnerHTML={{ __html: contents}} />}
+        {props.view !== "EDIT" && <Viewer
+            mode={props.mode}
+            view={props.view}
+            dangerouslySetInnerHTML={{ __html: keywords.reduce((acc,keyword)=>replacer(acc,keyword),contents)}}
+        />}
     </Wrapper>;
 }
 
