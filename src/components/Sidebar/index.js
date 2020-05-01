@@ -14,7 +14,7 @@ import CreateModal from '../CreateModal'
 //サイドバー全体
 const Container = styled.div`
     position:relative;
-    width: 10%;
+    width: 14%;
     height: 100vh;
     left: 0px;
     top: 0px;

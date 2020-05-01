@@ -24,18 +24,20 @@ const Meeting = (props) => {
         }
     ];
     props.data.discription="";
-    props.data.records= [
-        {
-            editor:"me",
-            lastEditDate: "2020年4月28日 0:00:00 UTC+9",
-            markdown: "内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です"
+    props.data.records= {
+        USER_ID_NIBA: {
+            title: "Hackzハッカソン議事録1",
+            editor: "にば",
+            lastEditDate: "2019-04-01T03:15:45.000Z",
+            markdown: "内容です"
         },
-        {
-            editor:"you",
-            lastEditDate: "2020年4月28日 0:00:00 UTC+9",
-            markdown: "内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です内容です"
+        USER_ID_FUKKE: {
+            title: "Hackzハッカソン議事録2",
+            editor: "ふっけ",
+            lastEditDate: "2019-04-01T03:15:45.000Z",
+            markdown: "内容です"
         }
-    ];
+    };
     props.data.keywords=["内容","です"];
     //ここまで仮データ
 
