@@ -44,7 +44,7 @@ const EditorSet = (props) => {
         {props.view !== "EDIT" && <Viewer
             mode={props.mode}
             view={props.view}
-            dangerouslySetInnerHTML={{ __html: keywords.reduce((acc,keyword)=>replacer(acc,keyword),contents)}}
+            dangerouslySetInnerHTML={{ __html: (props.highlight ? keywords.reduce((acc,keyword)=>replacer(acc,keyword),contents) : contents)}}
         />}
     </Wrapper>;
 }

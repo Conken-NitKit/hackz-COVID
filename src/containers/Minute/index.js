@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import { FaPen, FaEye } from 'react-icons/fa'
 import { BsSquareHalf } from 'react-icons/bs'
+import { RiMarkPenLine } from 'react-icons/ri'
 
 import Markdown from '../../components/Editor';
 import COLOR from '../../styles/color';
@@ -9,6 +10,7 @@ import COLOR from '../../styles/color';
 const  MinutePage = (props) => {
     const {writter, loginUserName} = props;
     const [viewMode,setViewMode] = useState(writter === loginUserName ? "HALF" : 'VIEW')
+    const [highlight,setHighlight] = useState(true)
     const keywords = ["高専生","高専生","高専生","高専生","高専生","高専生","高専生"];
     return (
         <Wrapper mode={props.mode} >
@@ -17,8 +19,9 @@ const  MinutePage = (props) => {
                     <Title mode={props.mode}>Hackz-COVID</Title>
                     <Detail mode={props.mode}>
                         <Writter mode={props.mode}>製作者: {writter}</Writter>
+                        <ButtonGroup mode={props.mode}>
                         {writter === loginUserName && (
-                            <ModeGroup mode={props.mode}>
+                            <>
                                 <EditMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("EDIT")}>
                                     <FaPen color={viewMode!=="EDIT"?"black":COLOR.TEXT[props.mode]}/>
                                 </EditMode>
@@ -28,12 +31,16 @@ const  MinutePage = (props) => {
                                 <ViewMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("VIEW")}>
                                     <FaEye color={viewMode!=="VIEW"?"black":COLOR.TEXT[props.mode]}/>
                                 </ViewMode>
-                            </ModeGroup>
+                            </>
                         )}
+                        <HighlightButton mode={props.mode} highlight={highlight} onClick={()=>setHighlight(!highlight)}>
+                            <RiMarkPenLine color={highlight?"black":COLOR.TEXT[props.mode]}/>
+                        </HighlightButton>
+                        </ButtonGroup>
                     </Detail>
                 </MinuteHeader>
                 <MarkdownWrapper mode={props.mode}>
-                    <Markdown mode={props.mode} view={viewMode}/>
+                    <Markdown mode={props.mode} view={viewMode} highlight={highlight}/>
                 </MarkdownWrapper>
             </Minute>
             <KeywordList mode={props.mode}>
@@ -84,8 +91,9 @@ const Writter = styled.p`
     margin: 0;
 `;
 
-const ModeGroup = styled.div`
+const ButtonGroup = styled.div`
     position: absolute;
+    height: 30px;
     right: 0;
 `;
 
@@ -124,6 +132,19 @@ const EditMode = styled.button`
     border: 0.5px solid ${(props)=>COLOR.BORDER[props.mode]};
     background: ${(props)=>props.view==="EDIT"?COLOR.ACCENT[props.mode]:"white"};
 `;
+
+const HighlightButton = styled.button`
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    margin-left: 30px;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 0.5px solid ${(props)=>COLOR.BORDER[props.mode]};
+    background: ${(props)=>props.highlight?COLOR.ACCENT[props.mode]:"white"};
+`;
+
 
 const MarkdownWrapper = styled.div`
     height: 70%;
