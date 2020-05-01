@@ -30,7 +30,7 @@ const App = () => {
             <Container>
                 {userId === '' ?
                     <Home mode={mode} switchMode={switchMode}/> :
-                    <MeetingList mode={mode} />
+                    <MeetingList mode={mode} switchMode={switchMode}/>
                 }
             </Container>
         </AuthContext.Provider>

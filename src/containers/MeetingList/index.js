@@ -62,7 +62,8 @@ const EditedMEETINGS = [
     },
 ]
 
-const MeetingPage = ({mode}) => {
+const MeetingPage = ({mode, switchMode}) => {
+    console.log(switchMode)
     const [isMeetingShow, setMeetingShow] = useState(false)
     const [isMinuteShow, setMinuteShow] = useState(false)
     const [isMeetingListShow, setMeetingListShow] = useState(true)
@@ -93,7 +94,7 @@ const MeetingPage = ({mode}) => {
 
     return (
         <MeetingPageContainer>
-            <Sidebar mode={mode} handleSidebarMeetingListClick={handleSidebarMeetingListClick} handleNewMeeting={handleMeetingClick}/>
+            <Sidebar mode={mode} handleSidebarMeetingListClick={handleSidebarMeetingListClick} handleNewMeeting={handleMeetingClick} switchMode={switchMode}/>
             {isMeetingListShow &&
             <React.Fragment>
                 <div>

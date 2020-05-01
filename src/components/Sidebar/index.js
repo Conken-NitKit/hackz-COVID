@@ -95,6 +95,7 @@ const ModeIcon = (props) => {
 
 //サイドバー本体(メイン)
 const SideBar = (props) => {
+    console.log(props)
     /*
         サイドバーの各アイテムに割り当てたNo.とリンク先
         0:ミーティング新規作成 
@@ -163,7 +164,7 @@ const SideBar = (props) => {
                 <Text>設定</Text>
             </Item>
 
-            <BottomItem mode={mode} selected={false} onClick={() => switchMode()}>
+            <BottomItem mode={mode} selected={false} onClick={() => props.switchMode()}>
                 <Icon>
                     <ModeIcon mode={mode}/>
                 </Icon>
