@@ -17,7 +17,7 @@ const MeetingCard = ({mode, data, handleMeetingClick}) => {
 const Container = styled.div`
     width: 320px;
     height: 183px;
-    border: 1px solid #ffffff;
+    border:2px solid ${(props) => COLOR.BORDER[props.mode]};
     border-radius: 1em;
     background-color: ${(props) => COLOR.BACKGROUND[props.mode]};
     padding: 1em 2em;
