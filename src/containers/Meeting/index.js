@@ -9,12 +9,13 @@ import COLOR from '../../styles/color'
 import { AuthContext } from '../../App'
 
 const Meeting = (props) => {
-    const {handleMinuteClick,setWritter,setMinuteData} = props
+    const {handleMinuteClick,setWritter,setKeywords,setMinuteData} = props
     const userState = useContext(AuthContext);
     const [screen,setScreen] = useState("MINUTE");
 
     const openMinute = (writter) => {
         setWritter(writter);
+        setKeywords(props.data.keywords)
         setMinuteData(props.data.records[writter]);
         handleMinuteClick();
     }

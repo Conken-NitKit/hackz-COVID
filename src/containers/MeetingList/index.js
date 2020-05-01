@@ -70,6 +70,7 @@ const MeetingPage = ({mode, switchMode}) => {
     const [meetingData, setMeetingData] = useState({})
     const [writter, setWritter] = useState("")
     const [MinuteData, setMinuteData] = useState("")
+    const [keywords, setKeywords] = useState([])
     const userState = useContext(AuthContext);
 
     const handleMeetingClick = (data) => {
@@ -92,7 +93,14 @@ const MeetingPage = ({mode, switchMode}) => {
     }
 
     const renderMeeting = (data) => {
-        return <Meeting mode={mode} data={data} handleMinuteClick={handleMinuteClick} setWritter={setWritter} setMinuteData={setMinuteData}/>
+        return <Meeting 
+            mode={mode}
+            data={data}
+            setWritter={setWritter}
+            setKeywords={setKeywords}
+            setMinuteData={setMinuteData}
+            handleMinuteClick={handleMinuteClick}
+        />
     }
 
     return (
@@ -119,7 +127,7 @@ const MeetingPage = ({mode, switchMode}) => {
 
             {isMeetingShow && renderMeeting(meetingData)}
 
-            {isMinuteShow && <Minute mode={mode} writter={writter} MinuteData={MinuteData} loginUser={userState[0]}/>}
+            {isMinuteShow && <Minute mode={mode} writter={writter} MinuteData={MinuteData} loginUser={userState[0]} keywords={keywords}/>}
         </MeetingPageContainer>
     )
 }

@@ -8,11 +8,10 @@ import Markdown from '../../components/Editor';
 import COLOR from '../../styles/color';
 
 const  MinutePage = (props) => {
-    const {writter, MinuteData, loginUser} = props;
+    const {writter, MinuteData, loginUser, keywords} = props;
     console.log(props)
     const [viewMode,setViewMode] = useState(writter === loginUser ? "HALF" : 'VIEW')
     const [highlight,setHighlight] = useState(true)
-    const keywords = ["高専生","高専生","高専生","高専生","高専生","高専生","高専生"];
     return (
         <Wrapper mode={props.mode} >
             <Minute mode={props.mode}>
@@ -41,7 +40,7 @@ const  MinutePage = (props) => {
                     </Detail>
                 </MinuteHeader>
                 <MarkdownWrapper mode={props.mode}>
-                    <Markdown mode={props.mode} view={viewMode} highlight={highlight} markdown={MinuteData.markdown}/>
+                    <Markdown mode={props.mode} view={viewMode} highlight={highlight} markdown={MinuteData.markdown} keywords={keywords}/>
                 </MarkdownWrapper>
             </Minute>
             <KeywordList mode={props.mode}>
