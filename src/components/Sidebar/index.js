@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
-import COLOR from '../../styles/color';
+import React, {useState} from 'react'
+import styled from 'styled-components'
+import COLOR from '../../styles/color'
 
-import {FaSun, FaMoon} from 'react-icons/fa';
-import {GiDiscussion} from 'react-icons/gi';
-import {IoMdAddCircle, IoMdSettings} from 'react-icons/io';
+import {FaSun, FaMoon} from 'react-icons/fa'
+import {GiDiscussion} from 'react-icons/gi'
+import {IoMdAddCircle, IoMdSettings} from 'react-icons/io'
+import CreateModal from '../CreateModal'
 
 //############################################################
 //コンポーネント
@@ -13,14 +14,14 @@ import {IoMdAddCircle, IoMdSettings} from 'react-icons/io';
 //サイドバー全体
 const Container = styled.div`
     position:relative;
-    width: 10%;
+    width: 14%;
     height: 100vh;
     left: 0px;
     top: 0px;
 
     background: #3B3A3A;
     mix-blend-mode: normal;
-`;
+`
 
 //サイドバーの項目1つ1つ
 const Item = styled.div`
@@ -28,8 +29,8 @@ const Item = styled.div`
     width: 100%;
     height: 175px;
 
-    background: ${(props)=>(props.selected ? COLOR.MAIN[props.mode] : "#3B3A3A")};
-`;
+    background: ${(props) => (props.selected ? COLOR.MAIN[props.mode] : '#3B3A3A')};
+`
 
 //サイドバーの項目(ボトムに置くもの)
 const BottomItem = styled.div`
@@ -39,7 +40,7 @@ const BottomItem = styled.div`
     bottom: 0;
 
     background: "#3B3A3A";
-`;
+`
 
 //アイテムが選択されたときに表示される横の白いやつ
 const SelectedMark = styled.div`
@@ -48,7 +49,7 @@ const SelectedMark = styled.div`
     height: 100%;
 
     background: #FFFFFF;
-`;
+`
 
 //アイコンの位置取り用(この中にアイコンを入れる)
 const Icon = styled.div`
@@ -56,7 +57,7 @@ const Icon = styled.div`
     height: 75px;
     margin: auto;
     padding: 15px;
-`;
+`
 
 //テキスト
 const Text = styled.div`
@@ -71,7 +72,7 @@ const Text = styled.div`
     padding: 6px;
 
     color: #FFFFFF;
-`;
+`
 
 //############################################################
 //メソッド
@@ -79,15 +80,15 @@ const Text = styled.div`
 
 //モードに対応したアイコンを返す
 const ModeIcon = (props) => {
-    const {mode} = props; // モード(LIGHTMODE or DARKMODE)
+    const {mode} = props // モード(LIGHTMODE or DARKMODE)
 
-    if(mode === "LIGHTMODE"){
+    if (mode === 'LIGHTMODE') {
         return (
-            <FaSun size={70} color={"white"}/>
+            <FaSun size={70} color={'white'}/>
         )
-    }else{
+    } else {
         return (
-            <FaMoon size={70} color={"white"}/>
+            <FaMoon size={70} color={'white'}/>
         )
     }
 }
@@ -103,68 +104,74 @@ const SideBar = (props) => {
 
     const {
         mode,// モード(LIGHTMODE or DARKMODE)
-        switchMode //switchMode関数
-    } = props; 
-    
-    const[selectedState,setSelectedState]=useState([true,false,false]); //各アイテムがそれぞれ選択されているか(配列)
+        switchMode, //switchMode関数
+        handleSidebarMeetingListClick,
+        handleNewMeeting,
+    } = props
 
+    const [selectedState, setSelectedState] = useState([true, false, false]) //各アイテムがそれぞれ選択されているか(配列)
+
+    const [isModalShow, setModalShow] = useState(false)
     //各アイテムがクリックされたときに呼び出されるイベント
-    const itemOnClick = (selectedItemNo) => { 
-        var selectedStateTmp=[];
+    const itemOnClick = (selectedItemNo) => {
+        var selectedStateTmp = []
 
         //選択されたアイテムNo.による分岐
-        switch(selectedItemNo){
+        switch (selectedItemNo) {
             case 0:
-                alert("新規作成 got selected");
-                break;
+                setModalShow(true)
+                break
 
             case 1:
-                alert("リスト got selected");
-                break;
+                handleSidebarMeetingListClick()
+                break
 
             case 2:
-                alert("設定 got selected");
-                break;
+                alert('設定 got selected')
+                break
         }
 
-        for(let i=0;i<selectedState.length;i++)selectedStateTmp[i]=(i===selectedItemNo);//各アイテムが選択されているか否かを配列に格納
-        setSelectedState(selectedStateTmp);
+        for (let i = 0; i < selectedState.length; i++) selectedStateTmp[i] = (i === selectedItemNo)//各アイテムが選択されているか否かを配列に格納
+        setSelectedState(selectedStateTmp)
     }
 
     return (
         <Container>
-            <Item mode={mode} selected={selectedState[0]} onClick={()=>itemOnClick(0)}>
+            <Item mode={mode} selected={selectedState[0]} onClick={() => itemOnClick(0)}>
                 <SelectedMark hidden={!selectedState[0]}/>
                 <Icon>
-                    <IoMdAddCircle size={75} color={"white"}/>
+                    <IoMdAddCircle size={75} color={'white'}/>
                 </Icon>
                 <Text>ミーティング</Text>
                 <Text>新規作成</Text>
             </Item>
 
-            <Item mode={mode} selected={selectedState[1]} onClick={()=>itemOnClick(1)}>
+            <Item mode={mode} selected={selectedState[1]} onClick={() => itemOnClick(1)}>
                 <SelectedMark hidden={!selectedState[1]}/>
                 <Icon>
-                    <GiDiscussion size={75} color={"white"}/>
+                    <GiDiscussion size={75} color={'white'}/>
                 </Icon>
                 <Text>ミーティング</Text>
                 <Text>リスト</Text>
             </Item>
 
-            <Item mode={mode} selected={selectedState[2]} onClick={()=>itemOnClick(2)}>
+            <Item mode={mode} selected={selectedState[2]} onClick={() => itemOnClick(2)}>
                 <SelectedMark hidden={!selectedState[2]}/>
                 <Icon>
-                    <IoMdSettings size={75} color={"white"}/>
+                    <IoMdSettings size={75} color={'white'}/>
                 </Icon>
                 <Text>設定</Text>
             </Item>
 
-            <BottomItem mode={mode} selected={false} onClick={()=>switchMode()}>
+            <BottomItem mode={mode} selected={false} onClick={() => props.switchMode()}>
                 <Icon>
                     <ModeIcon mode={mode}/>
                 </Icon>
             </BottomItem>
+            {isModalShow && (
+                <CreateModal mode={mode} setModalShow={setModalShow} handleNewMeeting={handleNewMeeting}/>
+            )}
         </Container>
-    );
+    )
 }
-export default SideBar;
+export default SideBar

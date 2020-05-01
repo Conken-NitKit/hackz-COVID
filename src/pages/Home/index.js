@@ -171,7 +171,7 @@ const CatchImage = styled.div`
     background-color: #ffffff;
     width: 500px;
     height: 400px;
-    margin 0 auto;
+    margin: 0 auto;
 `
 
 const ConceptContainer = styled.div`

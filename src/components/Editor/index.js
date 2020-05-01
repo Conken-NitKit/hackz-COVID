@@ -8,8 +8,7 @@ import styled from 'styled-components';
 import COLOR from '../../styles/color';
 
 const EditorSet = (props) => {
-    const [content, setContent] = useState("");
-    const keywords = ["高校生","高専"];
+    const [content, setContent] = useState(props.markdown);
     const replacer = ( str, word ) => {
         const formatStr = str.replace(/<h1 id="(.*?)">/g,'<h1>')
                              .replace(/<h2 id="(.*?)">/g,'<h2>')
@@ -44,7 +43,7 @@ const EditorSet = (props) => {
         {props.view !== "EDIT" && <Viewer
             mode={props.mode}
             view={props.view}
-            dangerouslySetInnerHTML={{ __html: (props.highlight ? keywords.reduce((acc,keyword)=>replacer(acc,keyword),contents) : contents)}}
+            dangerouslySetInnerHTML={{ __html: (props.highlight ? props.keywords.reduce((acc,keyword)=>replacer(acc,keyword),contents) : contents)}}
         />}
     </Wrapper>;
 }

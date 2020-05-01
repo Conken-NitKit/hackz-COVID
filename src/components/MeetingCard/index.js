@@ -2,13 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import COLOR from '../../styles/color'
 
-const MeetingCard = ({mode, data}) => {
-    const handleClick = () => {
-        // link先へ飛ぶ?
-    }
+const MeetingCard = ({mode, data, handleMeetingClick}) => {
 
     return (
-        <Container mode={mode} onClick={handleClick}>
+        <Container mode={mode} onClick={(data) => handleMeetingClick(data)}>
             <Title mode={mode}>{data.title}</Title>
             <Owner mode={mode}>作成者: {data.owner}</Owner>
             <Description mode={mode}>{data.description}</Description>

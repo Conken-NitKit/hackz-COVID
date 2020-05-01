@@ -1,8 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import styled from 'styled-components'
 import COLOR from '../../styles/color'
+import {signUp, signIn} from '../../functions/main'
+import {AuthContext} from '../../App'
 
 const AuthCard = ({mode, isSignIn, handleAuthShow}) => {
+    const [userId, setUserId] = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [userName, setUseName] = useState('')
@@ -19,13 +22,18 @@ const AuthCard = ({mode, isSignIn, handleAuthShow}) => {
         setPassword(e.target.value)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (isSignIn) {
             // サインアップ処理
-
+            const result = await signIn(email, password)
+            console.log(result.data)
+            setUserId(result.data)
             // 画面遷移
         } else {
             // ログイン処理
+            const result = await signUp(userName, email, password)
+            console.log(result.data)
+            setUserId(result.data)
             // 画面遷移
         }
     }

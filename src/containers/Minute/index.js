@@ -8,19 +8,19 @@ import Markdown from '../../components/Editor';
 import COLOR from '../../styles/color';
 
 const  MinutePage = (props) => {
-    const {writter, loginUserName} = props;
-    const [viewMode,setViewMode] = useState(writter === loginUserName ? "HALF" : 'VIEW')
+    const {writter, MinuteData, loginUser, keywords} = props;
+    console.log(props)
+    const [viewMode,setViewMode] = useState(writter === loginUser ? "HALF" : 'VIEW')
     const [highlight,setHighlight] = useState(true)
-    const keywords = ["高専生","高専生","高専生","高専生","高専生","高専生","高専生"];
     return (
         <Wrapper mode={props.mode} >
             <Minute mode={props.mode}>
                 <MinuteHeader>
-                    <Title mode={props.mode}>Hackz-COVID</Title>
+                    <Title mode={props.mode}>{MinuteData.title}</Title>
                     <Detail mode={props.mode}>
-                        <Writter mode={props.mode}>製作者: {writter}</Writter>
+                        <Writter mode={props.mode}>製作者: {MinuteData.editor}</Writter>
                         <ButtonGroup mode={props.mode}>
-                        {writter === loginUserName && (
+                        {writter === loginUser && (
                             <>
                                 <EditMode mode={props.mode} view={viewMode} onClick={()=>setViewMode("EDIT")}>
                                     <FaPen color={viewMode!=="EDIT"?"black":COLOR.TEXT[props.mode]}/>
@@ -40,7 +40,7 @@ const  MinutePage = (props) => {
                     </Detail>
                 </MinuteHeader>
                 <MarkdownWrapper mode={props.mode}>
-                    <Markdown mode={props.mode} view={viewMode} highlight={highlight}/>
+                    <Markdown mode={props.mode} view={viewMode} highlight={highlight} markdown={MinuteData.markdown} keywords={keywords}/>
                 </MarkdownWrapper>
             </Minute>
             <KeywordList mode={props.mode}>
@@ -54,7 +54,7 @@ const  MinutePage = (props) => {
 
 const Wrapper = styled.div`
     width: 100%;
-    height: 100%;
+    height: 90vh;
     background: ${(props)=>COLOR.BACKGROUND[props.mode]};
 `;
 

@@ -172,8 +172,8 @@ const SubmitButton = styled.button`
 //  メインメソッド
 //############################################################
 const CreateModal = (props) => {
-
-    const {mode} = props; // モード(LIGHTMODE or DARKMODE)
+    const [data, setData] = useState({})
+    const {mode, setModalShow, handleNewMeeting} = props; // モード(LIGHTMODE or DARKMODE)
 
     return(
     <BackGround>
@@ -199,8 +199,11 @@ const CreateModal = (props) => {
             </Container>
 
             <Container>
-                <SubmitButton mode={mode}>新規作成</SubmitButton>
-                <CancelButton mode={mode}>キャンセル</CancelButton>
+                <SubmitButton mode={mode} onClick={() => {
+                    handleNewMeeting(data)
+                    setModalShow(false)
+                }}>新規作成</SubmitButton>
+                <CancelButton mode={mode} onClick={() => setModalShow(false)}>キャンセル</CancelButton>
             </Container>
         </Main>
     </BackGround>

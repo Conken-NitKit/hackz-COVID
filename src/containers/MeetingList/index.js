@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useState,useContext} from 'react'
 import styled from 'styled-components'
 import MeetingCard from '../../components/MeetingCard'
 import COLOR from '../../styles/color'
+import Sidebar from '../../components/Sidebar'
+import Meeting from '../../containers/Meeting'
+import Minute from '../../containers/Minute'
+import { AuthContext } from '../../App'
 
 // 仮データです
 const ViewdMEETINGS = [
@@ -59,23 +63,78 @@ const EditedMEETINGS = [
     },
 ]
 
-const MeetingPage = ({mode}) => {
-    return (
-        <React.Fragment>
-            <Typography mode={mode}>閲覧したミーティング</Typography>
-            <hr/>
-            <MeetingContainer>
-                {ViewdMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}/>)}
-            </MeetingContainer>
+const MeetingPage = ({mode, switchMode}) => {
+    const [isMeetingShow, setMeetingShow] = useState(false)
+    const [isMinuteShow, setMinuteShow] = useState(false)
+    const [isMeetingListShow, setMeetingListShow] = useState(true)
+    const [meetingData, setMeetingData] = useState({})
+    const [writter, setWritter] = useState("")
+    const [MinuteData, setMinuteData] = useState("")
+    const [keywords, setKeywords] = useState([])
+    const userState = useContext(AuthContext);
 
-            <Typography mode={mode}>編集したミーティング</Typography>
-            <hr/>
-            <MeetingContainer>
-                {EditedMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}/>)}
-            </MeetingContainer>
-        </React.Fragment>
+    const handleMeetingClick = (data) => {
+        setMeetingData(data)
+        setMeetingShow(true)
+        setMinuteShow(false)
+        setMeetingListShow(false)
+    }
+
+    const handleSidebarMeetingListClick = () => {
+        setMeetingShow(false)
+        setMinuteShow(false)
+        setMeetingListShow(true)
+    }
+
+    const handleMinuteClick = () => {
+        setMeetingShow(false)
+        setMeetingListShow(false)
+        setMinuteShow(true)
+    }
+
+    const renderMeeting = (data) => {
+        return <Meeting 
+            mode={mode}
+            data={data}
+            setWritter={setWritter}
+            setKeywords={setKeywords}
+            setMinuteData={setMinuteData}
+            handleMinuteClick={handleMinuteClick}
+        />
+    }
+
+    return (
+        <MeetingPageContainer>
+            <Sidebar mode={mode} handleSidebarMeetingListClick={handleSidebarMeetingListClick} handleNewMeeting={handleMeetingClick} switchMode={switchMode}/>
+            {isMeetingListShow &&
+            <React.Fragment>
+                <div>
+                    <Typography mode={mode}>閲覧したミーティング</Typography>
+                    <hr/>
+                    <MeetingContainer>
+                        {ViewdMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}
+                                                                   handleMeetingClick={handleMeetingClick}/>)}
+                    </MeetingContainer>
+
+                    <Typography mode={mode}>編集したミーティング</Typography>
+                    <hr/>
+                    <MeetingContainer>
+                        {EditedMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}
+                                                                    handleMeetingClick={handleMeetingClick}/>)}
+                    </MeetingContainer>
+                </div>
+            </React.Fragment>}
+
+            {isMeetingShow && renderMeeting(meetingData)}
+
+            {isMinuteShow && <Minute mode={mode} writter={writter} MinuteData={MinuteData} loginUser={userState[0]} keywords={keywords}/>}
+        </MeetingPageContainer>
     )
 }
+
+const MeetingPageContainer = styled.div`
+    display: flex;
+`
 
 const Typography = styled.p`
     color: ${(props) => COLOR.TEXT[props.mode]};
