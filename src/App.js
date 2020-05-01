@@ -28,7 +28,7 @@ const App = () => {
     return (
         <AuthContext.Provider value={[userId, setUserId]}>
             <Container mode={mode}>
-                {userId === 'a' ?
+                {userId === '' ?
                     <Home mode={mode} switchMode={switchMode}/> :
                     <MeetingList mode={mode} switchMode={switchMode}/>
                 }

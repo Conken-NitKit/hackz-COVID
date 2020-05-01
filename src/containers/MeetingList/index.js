@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState,useContext} from 'react'
 import styled from 'styled-components'
 import MeetingCard from '../../components/MeetingCard'
 import COLOR from '../../styles/color'
 import Sidebar from '../../components/Sidebar'
 import Meeting from '../../containers/Meeting'
 import Minute from '../../containers/Minute'
+import { AuthContext } from '../../App'
 
 // 仮データです
 const ViewdMEETINGS = [
@@ -63,12 +64,12 @@ const EditedMEETINGS = [
 ]
 
 const MeetingPage = ({mode, switchMode}) => {
-    console.log(switchMode)
     const [isMeetingShow, setMeetingShow] = useState(false)
     const [isMinuteShow, setMinuteShow] = useState(false)
     const [isMeetingListShow, setMeetingListShow] = useState(true)
     const [meetingData, setMeetingData] = useState({})
-
+    const userState = useContext(AuthContext);
+    
     const handleMeetingClick = (data) => {
         setMeetingData(data)
         setMeetingShow(true)
@@ -116,7 +117,7 @@ const MeetingPage = ({mode, switchMode}) => {
 
             {isMeetingShow && renderMeeting(meetingData)}
 
-            {isMinuteShow && <Minute mode={mode} writter={''} loginUser={''}/>}
+            {isMinuteShow && <Minute mode={mode} writter={userState.userId} loginUserName={userState.userId}/>}
         </MeetingPageContainer>
     )
 }

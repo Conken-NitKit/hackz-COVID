@@ -95,7 +95,6 @@ const ModeIcon = (props) => {
 
 //サイドバー本体(メイン)
 const SideBar = (props) => {
-    console.log(props)
     /*
         サイドバーの各アイテムに割り当てたNo.とリンク先
         0:ミーティング新規作成 

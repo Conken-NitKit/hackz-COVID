@@ -54,7 +54,7 @@ const  MinutePage = (props) => {
 
 const Wrapper = styled.div`
     width: 100%;
-    height: 100%;
+    height: 90vh;
     background: ${(props)=>COLOR.BACKGROUND[props.mode]};
 `;
 
