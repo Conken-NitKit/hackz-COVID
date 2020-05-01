@@ -34,7 +34,7 @@ const  MinutePage = (props) => {
                             </>
                         )}
                         <HighlightButton mode={props.mode} highlight={highlight} onClick={()=>setHighlight(!highlight)}>
-                            <RiMarkPenLine color={highlight?"black":COLOR.TEXT[props.mode]}/>
+                            <RiMarkPenLine color={highlight?COLOR.TEXT[props.mode]:"black"}/>
                         </HighlightButton>
                         </ButtonGroup>
                     </Detail>
