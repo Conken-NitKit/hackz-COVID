@@ -1,4 +1,4 @@
-import React, {useState,useContext} from 'react'
+import React, {useState,useContext, useEffect} from 'react'
 import styled from 'styled-components'
 import MeetingCard from '../../components/MeetingCard'
 import COLOR from '../../styles/color'
@@ -6,6 +6,7 @@ import Sidebar from '../../components/Sidebar'
 import Meeting from '../../containers/Meeting'
 import Minute from '../../containers/Minute'
 import { AuthContext } from '../../App'
+import {getUser, initMeeting} from '../../functions/main'
 
 // 仮データです
 const ViewdMEETINGS = [
@@ -72,8 +73,30 @@ const MeetingPage = ({mode, switchMode}) => {
     const [MinuteData, setMinuteData] = useState("")
     const [keywords, setKeywords] = useState([])
     const userState = useContext(AuthContext);
+    const [meetingList, setMeetingList] = useState([])
+    const [meetingAdminList, setMeetingAdminList] = useState([])
+
+
+    useEffect(() => {
+        const f = async() => {
+            const res = await getUser(userState[0])
+            // const res = await getUser('MdDQnVnOwWoOGQXntZJT')
+            setMeetingList(res.data.meeting)
+            setMeetingAdminList(res.data.meeting_admin)
+        }
+        f()
+        // console.log(f)
+    }, [])
 
     const handleMeetingClick = (data) => {
+        setMeetingData(data)
+        setMeetingShow(true)
+        setMinuteShow(false)
+        setMeetingListShow(false)
+    }
+
+    const handleNewMeeting = async (data) => {
+        const res = await initMeeting(data)
         setMeetingData(data)
         setMeetingShow(true)
         setMinuteShow(false)
@@ -105,21 +128,21 @@ const MeetingPage = ({mode, switchMode}) => {
 
     return (
         <MeetingPageContainer>
-            <Sidebar mode={mode} handleSidebarMeetingListClick={handleSidebarMeetingListClick} handleNewMeeting={handleMeetingClick} switchMode={switchMode}/>
+            <Sidebar mode={mode} handleSidebarMeetingListClick={handleSidebarMeetingListClick} handleNewMeeting={handleNewMeeting} switchMode={switchMode}/>
             {isMeetingListShow &&
             <React.Fragment>
                 <div>
                     <Typography mode={mode}>閲覧したミーティング</Typography>
                     <hr/>
                     <MeetingContainer>
-                        {ViewdMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}
+                        {meetingList.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}
                                                                    handleMeetingClick={handleMeetingClick}/>)}
                     </MeetingContainer>
 
                     <Typography mode={mode}>編集したミーティング</Typography>
                     <hr/>
                     <MeetingContainer>
-                        {EditedMEETINGS.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}
+                        {meetingAdminList.map(meeting => <MeetingCard key={meeting.id} data={meeting} mode={mode}
                                                                     handleMeetingClick={handleMeetingClick}/>)}
                     </MeetingContainer>
                 </div>

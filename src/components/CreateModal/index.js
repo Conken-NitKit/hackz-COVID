@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 import COLOR from '../../styles/color';
+import {AuthContext} from '../../App'
 
 //############################################################
 //  コンポーネント
@@ -174,6 +175,18 @@ const SubmitButton = styled.button`
 const CreateModal = (props) => {
     const [data, setData] = useState({})
     const {mode, setModalShow, handleNewMeeting} = props; // モード(LIGHTMODE or DARKMODE)
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+
+    const [userId, setUserId] = useContext(AuthContext)
+
+    const handleTitle = (e) => {
+        setTitle(e.target.value)
+    }
+
+    const handleDescription = (e) => {
+        setDescription(e.target.value)
+    }
 
     return(
     <BackGround>
@@ -182,12 +195,12 @@ const CreateModal = (props) => {
 
             <Container>
                 <Text mode={mode}>ミーティング名</Text>
-                <TextField mode={mode}/>
+                <TextField mode={mode} onChange={handleTitle}/>
             </Container>
 
             <Container>
                 <Text mode={mode}>説明(オプション)</Text>
-                <TextArea mode={mode}/>
+                <TextArea mode={mode} onChange={handleDescription}/>
             </Container>
 
             <Container>
@@ -200,7 +213,11 @@ const CreateModal = (props) => {
 
             <Container>
                 <SubmitButton mode={mode} onClick={() => {
-                    handleNewMeeting(data)
+                    handleNewMeeting({
+                        title: title,
+                        description: description,
+                        'owner_id': userId,
+                    })
                     setModalShow(false)
                 }}>新規作成</SubmitButton>
                 <CancelButton mode={mode} onClick={() => setModalShow(false)}>キャンセル</CancelButton>

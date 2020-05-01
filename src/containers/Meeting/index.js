@@ -1,4 +1,4 @@
-import React, {useState,useContext} from 'react'
+import React, {useState,useContext, useEffect} from 'react'
 import styled from 'styled-components'
 import { MdBook, MdSettings } from  'react-icons/md'
 import { FaUser } from 'react-icons/fa'
@@ -7,6 +7,7 @@ import MinuteCard from '../../components/MinuteCard'
 import UserCard from '../../components/UserCard'
 import COLOR from '../../styles/color'
 import { AuthContext } from '../../App'
+import {getMeeting} from '../../functions/main'
 
 const Meeting = (props) => {
     const {handleMinuteClick,setWritter,setKeywords,setMinuteData} = props
@@ -19,6 +20,14 @@ const Meeting = (props) => {
         setMinuteData(props.data.records[writter]);
         handleMinuteClick();
     }
+
+    useEffect(() => {
+        const f = async() => {
+            const data =  await getMeeting()
+            console.log(data)
+        }
+        f()
+    })
 
     //以下仮データ(要らなくなったら消してください)
     props.data.title="Re:actから(ry";

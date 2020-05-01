@@ -24,13 +24,11 @@ const AuthCard = ({mode, isSignIn, handleAuthShow}) => {
 
     const handleSubmit = async () => {
         if (isSignIn) {
-            // サインアップ処理
             const result = await signIn(email, password)
-            console.log(result.data)
+            console.log(result)
             setUserId(result.data)
             // 画面遷移
         } else {
-            // ログイン処理
             const result = await signUp(userName, email, password)
             console.log(result.data)
             setUserId(result.data)
