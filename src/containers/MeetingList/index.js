@@ -106,6 +106,7 @@ const MeetingPage = ({mode, switchMode}) => {
     return (
         <MeetingPageContainer>
             <Sidebar mode={mode} handleSidebarMeetingListClick={handleSidebarMeetingListClick} handleNewMeeting={handleMeetingClick} switchMode={switchMode}/>
+            <Main>
             {isMeetingListShow &&
             <React.Fragment>
                 <div>
@@ -128,12 +129,19 @@ const MeetingPage = ({mode, switchMode}) => {
             {isMeetingShow && renderMeeting(meetingData)}
 
             {isMinuteShow && <Minute mode={mode} writter={writter} MinuteData={MinuteData} loginUser={userState[0]} keywords={keywords}/>}
+            </Main>
         </MeetingPageContainer>
     )
 }
 
 const MeetingPageContainer = styled.div`
     display: flex;
+`
+
+const Main = styled.div`
+    height: 100vh;
+    width: 85vw;
+    overflow: scroll;
 `
 
 const Typography = styled.p`

@@ -10,7 +10,6 @@ const Container = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: scroll;
   background: ${(props) => COLOR.BACKGROUND[props.mode]};
 `
 
@@ -21,7 +20,7 @@ export const AuthContext = createContext([
 
 
 const App = () => {
-    const [userId, setUserId] = useState('a')
+    const [userId, setUserId] = useState('')
     const [mode, setMode] = useState('LIGHTMODE') // LIGHTMODE or DARKMODE
     const switchMode = () => {
         setMode(mode === 'DARKMODE' ? 'LIGHTMODE' : 'DARKMODE')
