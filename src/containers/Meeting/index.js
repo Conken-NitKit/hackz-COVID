@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useContext} from 'react'
 import styled from 'styled-components'
 import { MdBook, MdSettings } from  'react-icons/md'
 import { FaUser } from 'react-icons/fa'
@@ -6,10 +6,18 @@ import { FaUser } from 'react-icons/fa'
 import MinuteCard from '../../components/MinuteCard'
 import UserCard from '../../components/UserCard'
 import COLOR from '../../styles/color'
+import { AuthContext } from '../../App'
 
 const Meeting = (props) => {
-    const {handleMinuteClick} = props
+    const {handleMinuteClick,setWritter,setMinuteData} = props
+    const userState = useContext(AuthContext);
     const [screen,setScreen] = useState("MINUTE");
+
+    const openMinute = (writter) => {
+        setWritter(writter);
+        setMinuteData(props.data.records[writter]);
+        handleMinuteClick();
+    }
 
     //以下仮データ(要らなくなったら消してください)
     props.data.title="Re:actから(ry";
@@ -29,7 +37,7 @@ const Meeting = (props) => {
             title: "Hackzハッカソン議事録1",
             editor: "にば",
             lastEditDate: "2019-04-01T03:15:45.000Z",
-            markdown: "内容です"
+            markdown: "# 内容です\n> お金"
         },
         USER_ID_FUKKE: {
             title: "Hackzハッカソン議事録2",
@@ -60,7 +68,7 @@ const Meeting = (props) => {
             <div>
                 <MinuteList>
                     {screen === "MINUTE" && Object.keys(props.data.records).map(
-                        key => <MinuteCard mode={props.mode} data={props.data.records[key]}/>
+                        key => <MinuteCard mode={props.mode} data={props.data.records[key]}　openMinute={()=>openMinute(key)}/>
                     )}
                     {screen === "USERS" && <UserCard mode={props.mode} name={props.data.owner.name} role={"管理者"} isAdmin={false}/>}
                     {screen === "USERS" && props.data.members.map(
@@ -68,7 +76,7 @@ const Meeting = (props) => {
                     )}
                 </MinuteList>
                 <RightItems>
-                    <CreateButton mode={props.mode} onClick={handleMinuteClick}>{(props.data.owner.name === "me" ? "自分の議事録を開く" : "新規作成") /*必要に応じて"me"は変更してください */}</CreateButton>
+                    <CreateButton mode={props.mode} onClick={()=>openMinute(userState[0])}>{(props.data.owner.name === "me" ? "自分の議事録を開く" : "新規作成") /*必要に応じて"me"は変更してください */}</CreateButton>
                     <KeywordList mode={props.mode}>
                         <Typography mode={props.mode}>重要だと思われるキーワード</Typography>
                             {props.data.keywords.map((keyword,i) => <Keyword mode={props.mode}>{i+1}. {keyword}</Keyword>)}

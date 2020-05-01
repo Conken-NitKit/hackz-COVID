@@ -5,7 +5,7 @@ import COLOR from '../../styles/color'
 const MeetingCard = (props) => {
     return (
         <Container mode={props.mode}>
-            <Title mode={props.mode}>{props.data.title}</Title>
+            <Title mode={props.mode} onClick={props.openMinute}>{props.data.title}</Title>
             <Owner mode={props.mode}>作成者: {props.data.editor}</Owner>
         </Container>
     )

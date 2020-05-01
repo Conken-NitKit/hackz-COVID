@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import COLOR from '../../styles/color';
 
 const EditorSet = (props) => {
-    const [content, setContent] = useState("");
+    const [content, setContent] = useState(props.markdown);
     const keywords = ["高校生","高専"];
     const replacer = ( str, word ) => {
         const formatStr = str.replace(/<h1 id="(.*?)">/g,'<h1>')
